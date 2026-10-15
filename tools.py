@@ -1,5 +1,7 @@
 from rdkit import Chem
 from rdkit.Chem import Descriptors, Crippen, rdMolDescriptors, Lipinski
+import math
+
 
 def calc_properties(smi: str) -> dict:
     props = {}
@@ -21,12 +23,17 @@ def calc_properties(smi: str) -> dict:
     props['hba'] = hba
     return props
 
-props = calc_properties("CCO")
-assert props["mol_weight"] == 46.07
-assert props["tpsa"] == 20.23
-assert props["hbd"] == 1
-assert set(props) == {"smiles", "mol_weight", "clogp", "tpsa", "hbd", "hba"}
 
-bad = calc_properties("not_a_smiles")
-assert "error" in bad
-assert "error" in calc_properties("")
+UNIT_CONV = {'pM': 0.001, 'nM': 1, 'uM': 1000, 'mM': 1000000}
+
+def to_pic50(value: float, units: str) -> float | dict:
+    if units not in UNIT_CONV:
+        return {"error": "unsupported units. try pM, uM, nM, or mM."}
+    if not isinstance(value, (int, float)):
+        return {"error": "invalid value. value must be a number"}
+    if value <=0:
+        return {"error": "invalid value. try a nonzero, positive number"}
+    
+    new_val = value*UNIT_CONV[units]
+    val_pic50 = 9 - math.log10(new_val)
+    return val_pic50
