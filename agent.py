@@ -1,7 +1,8 @@
 import anthropic
+from anthropic.types import Message
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv() #copies the .env contents into the environment first, and the client then finds the key there.
 
 
 CALC_PROPERTIES_TOOL = {
@@ -12,13 +13,15 @@ CALC_PROPERTIES_TOOL = {
         "properties": {
             "smiles": {
             "type": "string",
-            "description": "A SMILES string is a 2D representation of a molecule",
+            "description": "The SMILES string of a single molecule, exactly as given by the user",
         },
     },
             "required": ['smiles'], 
     },
 }
-def ask_model(question:str) -> dict:
+
+
+def ask_model(question:str) -> Message:
     client = anthropic.Anthropic()          # reads the key from the environment
 
     response = client.messages.create(
@@ -28,13 +31,8 @@ def ask_model(question:str) -> dict:
         tools = [CALC_PROPERTIES_TOOL]
     )
 
-    print("stop_reason:", response.stop_reason)
-    for block in response.content:
-        print("block type:", block.type)
-        if block.type == "tool_use":
-            print("tool:", block.name)
-            print("input:", block.input)
-            print("id:", block.id)
     return response
 
-ask_model("What are the molecular weight and TPSA of Cc1nc(N2CCN(C(=O)C3CC3)CC2)sc1C(=O)Nc1ccc(F)cc1?")
+if __name__ == "__main__":
+    print(ask_model("What is the capital of France?"))
+    print(ask_model("What are the molecular weight and TPSA of Cc1nc(N2CCN(C(=O)C3CC3)CC2)sc1C(=O)Nc1ccc(F)cc1?"))
