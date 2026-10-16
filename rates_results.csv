@@ -1,0 +1,20 @@
+Question,Tool pass rate,Value pass rate
+What is the pIC50 of 250 nM?,1.0,1.0
+What is the pIC50 of 0.25 micromolar?,1.0,1.0
+What is the pIC50 of 250 pM?,1.0,1.0
+What is the pIC50 of 2.5 M?,1.0,1.0
+What is the TPSA of CCO?,1.0,1.0
+What is the mol weight of CCO?,1.0,1.0
+What is the Mw of CO?,1.0,0.0
+What is the Mw of CH4O?,1.0,1.0
+How many HBD are there in CCO?,1.0,1.0
+What is the Hydrog bond acceptor count of CCO?,1.0,1.0
+Which has the higher TPSA: CCO or c1ccccc1O?,1.0,1.0
+"What is the TPSA of c1ccccc1O, and what is the pIC50 of its 2.5 nM IC50?",1.0,1.0
+"Can you give me the TPSA of c1ccccc1O and the convert its 2 batches of runs of IC50, first bacth is 2.5nM IC50 and second batch is 2.8nM to pIC50 ?",1.0,1.0
+What is the capital of France?,1.0,1.0
+What is the capital of Germany?,1.0,1.0
+What is the molecular formula of aspirin?,0.3333333333333333,1.0
+What is the TPSA of xyz1234?,1.0,1.0
+What is the pIc50 of 250?,1.0,1.0
+What is the pic50 of 0 nM?,1.0,1.0

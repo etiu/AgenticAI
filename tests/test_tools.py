@@ -1,4 +1,4 @@
-from tools import calc_properties
+from tools import calc_properties, to_pic50
 
 
 def test_calc_properties_ethanol():
@@ -14,13 +14,15 @@ def test_calc_properties_invalid():
     assert "error" in calc_properties("")
 
 
-def test_to_pic50():
+def test_to_pic50_rejects_bad_input():
     assert "error" in to_pic50(None, "mM") 
-assert "error" in to_pic50(0 , "nM")
-assert "error" in to_pic50(250, "M")
-assert "error" in to_pic50(-5, "nM")
-assert round(to_pic50(250, "pM"), 2) == 9.60     # calculation, pM
-assert round(to_pic50(250, "nM"), 2) == 6.60     # calculation, nM
-assert round(to_pic50(0.25, "uM"), 2) == 6.60    # calculation, uM
-assert round(to_pic50(0.25, "mM"), 2) == 3.60    # calculation, mM
+    assert "error" in to_pic50(0 , "nM")
+    assert "error" in to_pic50(250, "M")
+    assert "error" in to_pic50(-5, "nM")
+
+def test_to_pic50_calculations():
+    assert round(to_pic50(250, "pM"), 2) == 9.60     # calculation, pM
+    assert round(to_pic50(250, "nM"), 2) == 6.60     # calculation, nM
+    assert round(to_pic50(0.25, "uM"), 2) == 6.60    # calculation, uM
+    assert round(to_pic50(0.25, "mM"), 2) == 3.60    # calculation, mM
 

@@ -2,44 +2,125 @@ Question,Response,Tools,Pass_tools_called?,Pass_values?
 What is the pIC50 of 250 nM?,"The pIC50 of 250 nM is about **6.60**.
 
 This is calculated as pIC50 = −log₁₀(IC50 in mol/L), where 250 nM = 2.5 × 10⁻⁷ M.",['to_pic50'],True,True
+What is the pIC50 of 250 nM?,"The pIC50 of 250 nM is about **6.60**.
+
+This is calculated as pIC50 = −log10(IC50 in molar), so 250 nM = 2.5 × 10⁻⁷ M, and −log10(2.5 × 10⁻⁷) ≈ 6.60.",['to_pic50'],True,True
+What is the pIC50 of 250 nM?,"The pIC50 of 250 nM is about **6.60**.
+
+This comes from pIC50 = −log₁₀(IC50 in M), so 250 nM = 2.5 × 10⁻⁷ M gives −log₁₀(2.5 × 10⁻⁷) ≈ 6.60.",['to_pic50'],True,True
+What is the pIC50 of 0.25 micromolar?,The pIC50 of 0.25 µM is **6.60** (pIC50 = −log₁₀(0.25 × 10⁻⁶ M) ≈ 6.602).,['to_pic50'],True,True
+What is the pIC50 of 0.25 micromolar?,"The pIC50 of 0.25 µM is **6.60** (pIC50 = −log10 of the IC50 in molar units, so 0.25 µM = 2.5 × 10⁻⁷ M).",['to_pic50'],True,True
 What is the pIC50 of 0.25 micromolar?,"The pIC50 of 0.25 µM is about **6.60**.
 
-This comes from pIC50 = −log10(IC50 in M): 0.25 µM = 2.5 × 10⁻⁷ M, and −log10(2.5 × 10⁻⁷) ≈ 6.60.",['to_pic50'],True,True
+This comes from pIC50 = −log10(IC50 in mol/L): 0.25 µM = 2.5 × 10⁻⁷ M, and −log10(2.5 × 10⁻⁷) ≈ 6.60.",['to_pic50'],True,True
 What is the pIC50 of 250 pM?,"The pIC50 of 250 pM is about **9.60**.
 
-This is calculated as pIC50 = −log10(IC50 in mol/L), where 250 pM = 2.5 × 10⁻¹⁰ M.",['to_pic50'],True,True
-What is the pIC50 of 2.5 M?,"The pIC50 of 2.5 M is **-0.40** (-0.398).
+This comes from pIC50 = −log10(IC50 in mol/L), where 250 pM = 2.5 × 10⁻¹⁰ M.",['to_pic50'],True,True
+What is the pIC50 of 250 pM?,"The pIC50 of 250 pM is **9.60** (pIC50 = −log10 of the IC50 in molar units, here 2.5 × 10⁻¹⁰ M).",['to_pic50'],True,True
+What is the pIC50 of 250 pM?,The pIC50 of 250 pM is **9.60** (pIC50 = −log10 of the IC50 in molar units; 250 pM = 2.5 × 10⁻¹⁰ M).,['to_pic50'],True,True
+What is the pIC50 of 2.5 M?,"The pIC50 is **-0.40**.
 
-The tool doesn't accept molar units directly, so I entered the value as 2500 mM, which is the same concentration. pIC50 is -log10 of the IC50 in molar units, so this is -log10(2.5) ≈ -0.398. A negative pIC50 means the IC50 is above 1 M, which is far too weak to be meaningful for most assays.",['to_pic50'],True,True
+The tool doesn't accept molar (M) directly, so I converted 2.5 M to 2500 mM first. pIC50 = -log10(IC50 in M), so -log10(2.5) ≈ -0.40.
+
+A negative pIC50 means the IC50 is above 1 M, which is far too weak to be a meaningful potency value for most assays. You may want to check whether the value is correct or was meant to be in a different unit, such as nM or µM.",['to_pic50'],True,True
+What is the pIC50 of 2.5 M?,"The pIC50 of 2.5 M is **-0.398**.
+
+I converted 2.5 M to 2500 mM, since the tool doesn't accept molar units directly. The result matches -log10(2.5). A negative pIC50 means the IC50 is above 1 M, which is far outside the range typically measured for inhibitors.",['to_pic50'],True,True
+What is the pIC50 of 2.5 M?,"The pIC50 is about **-0.40**.
+
+The tool doesn't accept molar (M) directly, so I entered the equivalent value, 2.5 M = 2500 mM. The conversion is pIC50 = -log10(IC50 in M) = -log10(2.5) ≈ -0.398.
+
+A negative pIC50 means the IC50 is above 1 M, which is far too weak to be meaningful for a typical inhibitor. You may want to check that the value and unit are correct.",['to_pic50'],True,True
 What is the TPSA of CCO?,The TPSA (topological polar surface area) of ethanol (CCO) is **20.23 Å²**.,['calc_properties'],True,True
+What is the TPSA of CCO?,The TPSA (topological polar surface area) of ethanol (CCO) is 20.23 Å².,['calc_properties'],True,True
+What is the TPSA of CCO?,The TPSA (topological polar surface area) of ethanol (CCO) is 20.23 Å².,['calc_properties'],True,True
+What is the mol weight of CCO?,The molecular weight of CCO (ethanol) is 46.07 g/mol.,['calc_properties'],True,True
+What is the mol weight of CCO?,The molecular weight of CCO (ethanol) is 46.07 g/mol.,['calc_properties'],True,True
 What is the mol weight of CCO?,The molecular weight of CCO (ethanol) is 46.07 g/mol.,['calc_properties'],True,True
 What is the Mw of CO?,"The molecular weight of carbon monoxide (CO) is **28.01 g/mol**.
 
-I used the SMILES `[C-]#[O+]` for carbon monoxide, since `CO` in SMILES notation denotes methanol.",['calc_properties'],True,False
+If you meant methanol (SMILES ""CO""), the molecular weight is about 32.04 g/mol. I can check that value with the calculator if you need it.",['calc_properties'],True,False
+What is the Mw of CO?,"The molecular weight of carbon monoxide (CO) is **28.01 g/mol**.
+
+I used the SMILES `[C-]#[O+]` for carbon monoxide. The SMILES `CO` by itself denotes methanol, so I did not use it here.",['calc_properties'],True,False
+What is the Mw of CO?,"The molecular weight of carbon monoxide (CO) is **28.01**.
+
+Note that ""CO"" as a SMILES string means methanol, so I calculated this using the carbon monoxide structure, `[C-]#[O+]`.",['calc_properties'],True,False
+What is the Mw of CH4O?,"The molecular weight of CH₄O (methanol, SMILES `CO`) is **32.04 g/mol**.",['calc_properties'],True,True
+What is the Mw of CH4O?,"The molecular weight of CH₄O (methanol, SMILES `CO`) is **32.04 g/mol**.",['calc_properties'],True,True
 What is the Mw of CH4O?,"The molecular weight of CH4O (methanol, SMILES `CO`) is **32.04 g/mol**.",['calc_properties'],True,True
-How many HBD are there in CCO?,CCO (ethanol) has **1 hydrogen bond donor**. That is the hydroxyl (O–H) hydrogen. The calculator also gives 1 hydrogen bond acceptor (the oxygen).,['calc_properties'],True,True
-What is the Hydrog bond acceptor count of CCO?,The hydrogen bond acceptor (HBA) count of CCO (ethanol) is **1**.,['calc_properties'],True,True
-Which has the higher TPSA: CCO or c1ccccc1O?,"Neither one is higher. Both have a TPSA of 20.23 Å².
+How many HBD are there in CCO?,CCO (ethanol) has **1 hydrogen bond donor**. That is the hydroxyl (-OH) hydrogen.,['calc_properties'],True,True
+How many HBD are there in CCO?,"CCO (ethanol) has **1 hydrogen bond donor**. That is the hydroxyl (O–H) hydrogen. The calculation tool also reports 1 hydrogen bond acceptor, the oxygen.",['calc_properties'],True,True
+How many HBD are there in CCO?,CCO (ethanol) has **1 hydrogen bond donor**. That is the hydroxyl hydrogen on the oxygen.,['calc_properties'],True,True
+What is the Hydrog bond acceptor count of CCO?,The hydrogen bond acceptor count for CCO (ethanol) is **1**.,['calc_properties'],True,True
+What is the Hydrog bond acceptor count of CCO?,The hydrogen bond acceptor (HBA) count of ethanol (CCO) is **1**.,['calc_properties'],True,True
+What is the Hydrog bond acceptor count of CCO?,The hydrogen bond acceptor (HBA) count for CCO (ethanol) is **1**.,['calc_properties'],True,True
+Which has the higher TPSA: CCO or c1ccccc1O?,"Neither has the higher TPSA. Both have the same value of 20.23 Å².
 
-- **CCO (ethanol):** TPSA 20.23 Å², from the single hydroxyl oxygen.
-- **c1ccccc1O (phenol):** TPSA 20.23 Å², from the single hydroxyl oxygen.
+- **CCO (ethanol):** TPSA 20.23 Å²
+- **c1ccccc1O (phenol):** TPSA 20.23 Å²
 
-TPSA counts only polar atoms (N and O, plus attached hydrogens), so the carbon framework doesn't contribute. Both molecules have one OH group, so their values are identical.","['calc_properties', 'calc_properties']",True,True
+Each has one polar oxygen atom with one hydrogen bond donor and one acceptor, so the calculated TPSA is identical.","['calc_properties', 'calc_properties']",True,True
+Which has the higher TPSA: CCO or c1ccccc1O?,"Neither one is higher. Both have a TPSA of 20.23 Å², as calculated by the tool.
+
+Both molecules contain one polar oxygen atom, a hydroxyl group (–OH), which is the only contributor to TPSA. Ethanol (CCO) and phenol (c1ccccc1O) therefore have identical TPSA values, even though phenol has a much larger molecular weight (94.11 vs. 46.07) and a higher cLogP (1.39 vs. 0.00).","['calc_properties', 'calc_properties']",True,True
+Which has the higher TPSA: CCO or c1ccccc1O?,"Neither has a higher TPSA. Both have the same value of 20.23 Å².
+
+- **CCO (ethanol):** TPSA 20.23 Å²
+- **c1ccccc1O (phenol):** TPSA 20.23 Å²
+
+Both molecules have one polar oxygen atom with one hydrogen bond donor and one acceptor, and TPSA is calculated from polar atoms, so the aromatic ring in phenol doesn't add to it.","['calc_properties', 'calc_properties']",True,True
 "What is the TPSA of c1ccccc1O, and what is the pIC50 of its 2.5 nM IC50?","The TPSA of phenol (c1ccccc1O) is 20.23 Å².
 
 The pIC50 for an IC50 of 2.5 nM is 8.60.","['calc_properties', 'to_pic50']",True,True
+"What is the TPSA of c1ccccc1O, and what is the pIC50 of its 2.5 nM IC50?","The TPSA of phenol (c1ccccc1O) is 20.23 Ų.
+
+A 2.5 nM IC50 corresponds to a pIC50 of about 8.60.","['calc_properties', 'to_pic50']",True,True
+"What is the TPSA of c1ccccc1O, and what is the pIC50 of its 2.5 nM IC50?","The TPSA of phenol (c1ccccc1O) is 20.23 Ų.
+
+A 2.5 nM IC50 corresponds to a pIC50 of about 8.60.","['calc_properties', 'to_pic50']",True,True
 "Can you give me the TPSA of c1ccccc1O and the convert its 2 batches of runs of IC50, first bacth is 2.5nM IC50 and second batch is 2.8nM to pIC50 ?","Results for c1ccccc1O (phenol):
 
 - **TPSA:** 20.23 Å²
 - **Batch 1 (IC50 = 2.5 nM):** pIC50 ≈ 8.60
 - **Batch 2 (IC50 = 2.8 nM):** pIC50 ≈ 8.55","['calc_properties', 'to_pic50', 'to_pic50']",True,True
+"Can you give me the TPSA of c1ccccc1O and the convert its 2 batches of runs of IC50, first bacth is 2.5nM IC50 and second batch is 2.8nM to pIC50 ?","Results for c1ccccc1O (phenol):
+
+- **TPSA:** 20.23 Å²
+- **Batch 1 (IC50 = 2.5 nM):** pIC50 ≈ 8.60
+- **Batch 2 (IC50 = 2.8 nM):** pIC50 ≈ 8.55","['calc_properties', 'to_pic50', 'to_pic50']",True,True
+"Can you give me the TPSA of c1ccccc1O and the convert its 2 batches of runs of IC50, first bacth is 2.5nM IC50 and second batch is 2.8nM to pIC50 ?","Here are the results for c1ccccc1O (phenol):
+
+- **TPSA:** 20.23 Å²
+- **Batch 1 (IC50 = 2.5 nM):** pIC50 = 8.60
+- **Batch 2 (IC50 = 2.8 nM):** pIC50 = 8.55","['calc_properties', 'to_pic50', 'to_pic50']",True,True
+What is the capital of France?,The capital of France is Paris.,[],True,True
+What is the capital of France?,The capital of France is Paris.,[],True,True
 What is the capital of France?,The capital of France is Paris.,[],True,True
 What is the capital of Germany?,The capital of Germany is Berlin.,[],True,True
-What is the molecular formula of aspirin?,"Aspirin's molecular formula is **C₉H₈O₄**.
+What is the capital of Germany?,The capital of Germany is Berlin.,[],True,True
+What is the capital of Germany?,The capital of Germany is Berlin.,[],True,True
+What is the molecular formula of aspirin?,"The molecular formula of aspirin (acetylsalicylic acid) is **C9H8O4**.
 
-The property calculator I used doesn't report molecular formulas, so this comes from standard chemical knowledge. The molecular weight it returned (180.16) is consistent with that formula.",['calc_properties'],False,True
-What is the TPSA of xyz1234?,"""xyz1234"" looks like a compound ID, not a SMILES string, and I can only calculate TPSA from a SMILES. Could you send the SMILES for this compound? Once I have it, I'll calculate the TPSA.",[],True,True
-What is the pIc50 of 250?,"The value 250 has no unit, so I can't convert it yet. Is the IC50 250 nM, µM, mM, or pM? Once you confirm the unit, I'll calculate the pIC50.",[],True,True
-What is the pic50 of 0 nM?,"I can't calculate a pIC50 for 0 nM. pIC50 is defined as −log10 of the IC50 in molar units, and log10(0) is undefined (it approaches negative infinity), so the result would be infinite. An IC50 of 0 is not physically meaningful. It usually means the value was not measured, the compound's potency was below the assay's detection limit, or the value was entered incorrectly.
+The property calculator I used didn't return the formula directly. It returned a molecular weight of 180.16, which is consistent with C9H8O4. The formula itself comes from the standard structure of aspirin, not from the tool output.",['calc_properties'],False,True
+What is the molecular formula of aspirin?,"Aspirin's molecular formula is **C9H8O4**.
 
-If you have a real measured value, please send it and I'll convert it. For example, an IC50 of 10 nM corresponds to a pIC50 of 8.0.",[],True,True
+The property calculator doesn't return the formula directly, but its molecular weight of 180.16 for the aspirin structure (CC(=O)Oc1ccccc1C(=O)O) is consistent with C9H8O4.",['calc_properties'],False,True
+What is the molecular formula of aspirin?,Aspirin (acetylsalicylic acid) has the molecular formula **C₉H₈O₄**.,[],True,True
+What is the TPSA of xyz1234?,"""xyz1234"" looks like a compound ID rather than a structure, and I can only calculate TPSA from a SMILES string. Could you send the SMILES for this compound? Once I have it, I'll calculate the TPSA.",[],True,True
+What is the TPSA of xyz1234?,"I can't calculate TPSA from ""xyz1234"" because that looks like an identifier, not a structure. The property calculator needs a SMILES string, which describes the molecule's structure (for example, ethanol is `CCO`).
+
+If you send me the SMILES for xyz1234, I'll calculate its TPSA.",[],True,True
+What is the TPSA of xyz1234?,"""xyz1234"" looks like an identifier rather than a structure, and I can only calculate TPSA from a SMILES string. Could you send the SMILES for this compound? If you have a name or other identifier, I can't look it up, but I can calculate the TPSA once I have the structure.",[],True,True
+What is the pIc50 of 250?,"The value 250 is missing its concentration unit. Is it 250 pM, nM, µM, or mM? pIC50 is calculated as −log10 of the IC50 in molar units, so the answer depends on the unit. Once you confirm, I'll convert it.",[],True,True
+What is the pIc50 of 250?,"The value 250 has no unit, so I can't convert it yet. What unit is the IC50 in: pM, nM, uM, or mM? Once you confirm, I'll calculate the pIC50.",[],True,True
+What is the pIc50 of 250?,"I can convert that to pIC50, but I need the unit first. Is the IC50 250 pM, nM, uM, or mM?",[],True,True
+What is the pic50 of 0 nM?,"I can't calculate a pIC50 for 0 nM. pIC50 is -log10 of the IC50 in molar units, and log10(0) is undefined (it approaches negative infinity), so the result would be infinite. An IC50 of 0 isn't physically meaningful, so this is usually a data-entry error, a detection limit reported as zero, or a value that should have been reported as ""<"" some concentration.
+
+If you have the actual measured IC50, send it with its units (pM, nM, µM, or mM) and I'll convert it. If the value is a detection limit, I can convert that limit instead, but it would give a bound on the pIC50, not an exact value.",[],True,True
+What is the pic50 of 0 nM?,"I can't calculate a pIC50 for 0 nM. pIC50 is defined as -log10 of the IC50 in molar units, and log10(0) is undefined, so the value would be infinite. An IC50 of 0 is not physically meaningful. It usually means the measurement was below the assay's detection limit, or the value was recorded incorrectly.
+
+If you have the actual measured value, or a detection limit such as ""<1 nM,"" send it and I'll convert it. For example, an IC50 of 1 nM corresponds to a pIC50 of 9.0.",[],True,True
+What is the pic50 of 0 nM?,"I can't calculate a pIC50 for 0 nM. pIC50 is defined as -log10(IC50 in molar units), and the logarithm of zero is undefined. Physically, an IC50 of 0 nM would mean a compound that completely inhibits at no concentration, which isn't a meaningful measurement. It would correspond to a pIC50 approaching infinity.
+
+Check the value. If the IC50 was reported as below a detection limit, you could use that limit instead, or report it as ""<X nM."" If you meant a different concentration, send it and I'll convert it.",[],True,True
