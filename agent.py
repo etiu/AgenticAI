@@ -8,7 +8,7 @@ load_dotenv() #copies the .env contents into the environment first, and the clie
 
 CALC_PROPERTIES_TOOL = {
     "name": "calc_properties",
-    "description": "This is a tool which calculates different properties, specifically mol weight, LogP, TPSA, number of hydrogen bond donors, number of hydrogen bond acceptors",
+    "description": "This is a tool which calculates different properties, specifically mol weight, LogP, TPSA, number of hydrogen bond donors, number of hydrogen bond acceptors. Always use this tool for property values; never calculate them by hand or from memory. The input is always a SMILES string: 'CO' means methanol, not carbon monoxide.",
     "input_schema": {
         "type": "object",
         "properties": {
@@ -23,7 +23,7 @@ CALC_PROPERTIES_TOOL = {
 
 TO_PIC50_TOOL={
     "name": "to_pic50",
-    "description": "a tool to convert ic50 to pic50. user input ic50 in either nM, mM, uM, or pM. the tool returns the pic50 value.",
+    "description": "a tool to convert ic50 to pic50. user input ic50 in either nM, mM, uM, or pM. the tool returns the pic50 value. If the user does not give units, do not call this tool and do not assume a unit; ask the user which unit they mean. If the user gives 0 or negative value, do not call this tool and explain to the user why.",
     "input_schema": {
         "type": "object",
         "properties": {
@@ -49,8 +49,10 @@ def run_tool(name:str, tool_input:dict) -> float | dict:
 
 
 MAX_ROUNDS = 10
-def ask_model(question:str) -> tuple[str, list[str]]:
+def ask_model(question:str) -> tuple[str, list[str], dict[str, list[float]]]:
     tools_called =[]
+    tool_results =[]
+    tool_values = {}
     client = anthropic.Anthropic()          # reads the key from the environment
     messages = [
         {"role": "user", "content": question}
@@ -68,11 +70,22 @@ def ask_model(question:str) -> tuple[str, list[str]]:
             return "Stopped: too many tool calls.", tools_called
         messages.append({"role": "assistant", "content": response.content}) #what you send to the model on the next call
 
-        tool_results =[]
+        
         for k in response.content:
             if k.type == "tool_use":
                 tools_called.append(k.name)
                 result = run_tool(k.name, k.input)
+                    # NEW: keep every number the tool produced
+                if isinstance(result, (int, float)):        # to_pic50 returns a number
+                    if "pic50" not in tool_values:
+                        tool_values['pic50'] = []
+                    tool_values['pic50'].append(result)#dict of lists
+                elif "error" not in result:                 # calc_properties returns a dict
+                    for name, v in result.items():
+                        if isinstance(v, (int, float)):
+                            if name not in tool_values:
+                                tool_values[name] = []
+                            tool_values[name].append(v)
                 tool_results.append({"type": "tool_result",
                                      "tool_use_id": k.id,
                                      "content": json.dumps(result)})
@@ -85,15 +98,17 @@ def ask_model(question:str) -> tuple[str, list[str]]:
                 messages=messages,
                 tools = [CALC_PROPERTIES_TOOL, TO_PIC50_TOOL]
                     )
+        
     for k in response.content:
         if k.type == "text":
-            return k.text, tools_called
+            return k.text, tools_called, tool_values
 
 
 if __name__ == "__main__":
-    answer, tools = ask_model("What is the pIC50 of 250 nM?")
+    answer, tools, values = ask_model("What is the pIC50 of 250 nM?")
     print(answer)
     print(tools)          # should print ['to_pic50']
+    print(values)
 # if __name__ == "__main__":
 #     print(ask_model("What is the capital of France?"))
 #     print(ask_model("What are the molecular weight and TPSA of Cc1nc(N2CCN(C(=O)C3CC3)CC2)sc1C(=O)Nc1ccc(F)cc1?"))
